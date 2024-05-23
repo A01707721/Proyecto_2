@@ -11,5 +11,5 @@ Programa hecho en C++ standard, con una interfaz del usuario en el idioma españ
 - Windows a.exe
 - Linux ./a.out
 ## Casos de error
-El ingresar números que no esten incluidos en los diferentes menus, causa un error
-Modificacion del nombre de los archivos .h casua errores de compilación
+- El ingresar números que no esten incluidos en los diferentes menus, causa un error.
+- Modificacion del nombre de los archivos .h casua errores de compilación
