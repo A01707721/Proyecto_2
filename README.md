@@ -10,3 +10,6 @@ Programa hecho en C++ standard, con una interfaz del usuario en el idioma españ
 - Compilar en terminal con g++ main.cpp Doctor.h Hospital.h
 - Windows a.exe
 - Linux ./a.out
+## Casos de error
+El ingresar números que no esten incluidos en los diferentes menus, causa un error
+Modificacion del nombre de los archivos .h casua errores de compilación
