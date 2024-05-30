@@ -5,58 +5,6 @@
 #include <string>
 #include <sstream>
 
-//Clase padre
-class Employee{
-    private:
-    //Atributos
-    std::string name;
-    int age;
-    public:
-    int hours;
-    //Constructor Default
-    Employee():name(""),age(0),hours(0){};
-    //Constructor
-    Employee(std::string n, int a, int h);
-    //Getteres y Setters
-    std::string get_name();
-    int get_age();
-    int get_hours();
-    void set_name(std::string);
-    void set_age(int);
-    void set_hours(int);
-    //Metodo
-    void work(int);
-    //Metodos abstractos seran sobreescritos 
-    float pay();
-    std::string to_stream();
-};
-Employee::Employee(std::string n, int a, int h){
-    name=n;
-    age=a;
-    hours=h;
-}
-std::string Employee::get_name(){
-    return name;
-}
-int Employee::get_age(){
-    return age;
-}
-int Employee::get_hours(){
-    return hours;
-}
-void Employee::set_name(std::string n){
-    name=n;
-}
-void Employee::set_age(int a){
-    age=a;
-}
-void Employee::set_hours(int h){
-    hours=h;
-}
-void Employee::work(int w){
-    hours=hours+w;
-}
-
 //Clase Paciente
 class Patient{
     //Atributos
@@ -124,35 +72,86 @@ std::string Patient::to_string(){
     return aux.str();
 }
 
+
+//Clase padre
+class Employee{
+    private:
+    //Atributos
+    std::string name;
+    int age;
+    public:
+    int hours;
+    std::string type;
+    //Constructor Default
+    Employee():name(""),age(0),hours(0),type(""){};
+    //Constructor
+    Employee(std::string n, int a, int h, std::string t);
+    //Getteres y Setters
+    std::string get_name();
+    int get_age();
+    int get_hours();
+    std::string get_type();
+    void set_name(std::string);
+    void set_age(int);
+    void set_hours(int);
+    //Metodo
+    void work(int);
+    //Metodos abstractos seran sobreescritos 
+    virtual float pay()=0;
+    virtual std::string to_stream()=0;
+};
+Employee::Employee(std::string n, int a, int h, std::string t){
+    name=n;
+    age=a;
+    hours=h;
+    type=t;
+}
+std::string Employee::get_name(){
+    return name;
+}
+int Employee::get_age(){
+    return age;
+}
+int Employee::get_hours(){
+    return hours;
+}
+std::string Employee::get_type(){
+    return type;
+}
+void Employee::set_name(std::string n){
+    name=n;
+}
+void Employee::set_age(int a){
+    age=a;
+}
+void Employee::set_hours(int h){
+    hours=h;
+}
+void Employee::work(int w){
+    hours=hours+w;
+}
+
+
 //Clase hijo de Employee
 class Doctor: public Employee{
     //Atributos
     private:
     std::string specialty;
-    //Agregacion por parte de la clase Patient
-    Patient P[3];
-    int num_patient;
     public:
     //Constructor Default
-    Doctor():Employee(),specialty(""),num_patient(0){};
+    Doctor():Employee("",0,0,"Doctor"),specialty(""){};
     //Constructor con sobrecarga
-    Doctor(std::string n, int a, int h, std::string s):Employee(n,a,h){
+    Doctor(std::string n, int a, int h, std::string s):Employee(n,a,h,"Doctor"){
         specialty=s;
-        num_patient=0;
     }
     //Constructor
-    Doctor(std::string n, int a, int h):Employee(n,a,h){
+    Doctor(std::string n, int a, int h):Employee(n,a,h,"Doctor"){
         specialty="General Md";
-        num_patient=0;
     }
     //Getters y Setters
     std::string get_specialty();
-    Patient get_patient(int);
+    std::string get_type();
     void set_specialty(std::string);
-    void set_patient(Patient &);
-    //Metodos
-    void treatment(int);
-    void patients();
     //Metodos sobreescritos de la clase padre
     float pay();
     std::string to_stream();
@@ -160,23 +159,8 @@ class Doctor: public Employee{
 std::string Doctor::get_specialty(){
     return specialty;
 }
-Patient Doctor::get_patient(int num){
-    return P[num];
-}
 void Doctor::set_specialty(std::string s){
     specialty=s;
-}
-void Doctor::set_patient(Patient &Pa){
-    P[num_patient]=Pa;
-    num_patient++;
-}
-void Doctor::treatment(int num){
-    P[num].set_status("Medical Discharge");
-}
-void Doctor::patients(){
-    for(int i=0;i<num_patient;i++){
-        std::cout << i << ".- " << P[i].to_string() << std::endl;
-    }
 }
 float Doctor::pay(){
     float payment=0;
@@ -201,17 +185,18 @@ class Personal: public Employee{
     int job;
     public:
     //Constructor default
-    Personal():Employee(),job(1){};
+    Personal():Employee("",0,0,"Personal"),job(1){};
     //Constructor con sobrecarga
-    Personal(std::string n, int a, int h, int j):Employee(n,a,h){
+    Personal(std::string n, int a, int h, int j):Employee(n,a,h,"Personal"){
         job=j;
     }
     //Constructor
-    Personal(std::string n, int a, int h):Employee(n,a,h){
+    Personal(std::string n, int a, int h):Employee(n,a,h,"Personal"){
         job=1;
     }
     //Getters y Setters
     int get_job();
+    std::string get_type();
     void set_job(int);
     //Metodos sobreescritos de la clase padre
     float pay();
@@ -230,7 +215,16 @@ float Personal::pay(){
 }
 std::string Personal::to_stream(){
     std::stringstream aux;
-    aux << "Personal " << get_name() << " payment: " << pay() << std::endl;
+    if(job==1){
+        aux << "Janitor " << get_name() << " payment: " << pay() << std::endl;
+    }
+    if(job==2){
+        aux << "Management " << get_name() << " payment: " << pay() << std::endl;
+    }
+    if(job==3){
+        aux << "Nurse " << get_name() << " payment: " << pay() << std::endl;
+    }
+    
     return aux.str();
 }
 
