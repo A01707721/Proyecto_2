@@ -23,6 +23,7 @@ Programa hecho en C++ standard, con una interfaz del usuario en el idioma españ
 - Modificación del nombre de los archivos .h causa errores de compilación
 - Al crear un nuevo empleado Personal utilizar un número fuera del rango establecido
 - Al crear un nuevo empleado Doctor no usar la palabra NONE para especificar la ausencia de especialidad.
+- Ingresar datos del tipo incorrecto, (Ingresar un número cuando se pide caracteres, o viceversa).
 ## Correcciones
 Versión Github 1.0: Se creo el repositorio en Github con los archivos main.cpp, Hospital.h, Doctor.h, el UML de clases y el Readme.
 **SICT0301A Evalúa los componentes que integran una problemática y SICT0303A Implementa acciones científicas:** Se crearon las diferentes clases con sus respectivos métodos y atributos,
@@ -41,3 +42,7 @@ Versión Github 4.0: **SICT0303A Implementa acciones científicas:** Se modifica
 **(Doctor.h Employee líneas 178-180)**
 **SEG0702A Tecnologías y Herramientas:** Se sobrescribió el código sobre los archivos ya existentes en el github, además de agregar documentación de versiones y datos en el Github.
 **SICT0301A Evalúa los componentes que integran una problemática:** Se añadió en el Readme una sección que documenta los casos de error previstos en el código.
+
+Versión Github 5.0: **SICT0301A Evalúa los componentes que integran una problemática:** Se modificó la versión final del diagrama de clases, se añadió información adicional de casos de error.
+Finalmente se mejoró la interfaz del usuario permitiendo agregar espacios en el nombre de los empleados a crear.
+
