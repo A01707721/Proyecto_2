@@ -40,7 +40,7 @@ int main(){
     bool cond=true;
     //Variable int para elegir que accion del menu realizar
     int n_0=0, n_1=1;
-    std::string n="",s="";
+    std::string n,s;
     int a=0,h=0,j=0;
     //Creacion del objeto tipo Hospital
     Hospital Sunny("Sunny Hospital"); 
@@ -98,8 +98,9 @@ int main(){
             if(n_1==1){
                 std::cout << "Add Doctor" << std::endl;
                 //Ingresa el nombre
-                std::cout << "Name: ";
-                std::cin >> n;
+                std::cout << "Name: " << std::endl;
+                std::cin.ignore();
+                std::getline(std::cin,n);
                 //Ingresa la edad
                 std::cout << "Age: ";
                 std::cin >> a;
@@ -120,7 +121,8 @@ int main(){
                 std::cout << "Add Personal" << std::endl;
                 //Ingresa el nombre
                 std::cout << "Name: ";
-                std::cin >> n;
+                std::cin.ignore();
+                std::getline(std::cin,n);
                 //Ingresa la edad
                 std::cout << "Age: ";
                 std::cin >> a;
